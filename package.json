@@ -1,0 +1,25 @@
+{
+  "name": "deepseek-web-search",
+  "version": "1.1.0",
+  "description": "Web search MCP server for DeepSeek API users — provides web_search tool via DuckDuckGo",
+  "type": "module",
+  "main": "scripts/mcp-server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "cheerio": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "repository": "https://github.com/tenltrist/deepseek-web-search",
+  "license": "MIT",
+  "keywords": [
+    "deepseek",
+    "web-search",
+    "duckduckgo",
+    "mcp",
+    "mcp-server",
+    "claude-code"
+  ]
+}

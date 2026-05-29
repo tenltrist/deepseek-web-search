@@ -31,6 +31,7 @@ API Error: 400 deepseek-reasoner does not support this tool_choice
 1. 克隆仓库：
 ```bash
 git clone https://github.com/tenltrist/deepseek-web-search.git ~/deepseek-web-search
+cd ~/deepseek-web-search && npm install
 ```
 
 2. 在 `~/.claude/.mcp.json` 中添加：
@@ -52,16 +53,19 @@ git clone https://github.com/tenltrist/deepseek-web-search.git ~/deepseek-web-se
 ## 工作原理
 
 ```
-Claude Code → MCP Protocol (stdio) → mcp-server.js → DuckDuckGo HTML → 搜索结果
+Claude Code → MCP SDK (stdio) → mcp-server.js → DuckDuckGo HTML → 搜索结果
 ```
 
-- 纯 Node.js 实现，**零外部依赖**（只用 Node.js 内置的 `readline` 和 `fetch`）
-- 通过 DuckDuckGo HTML 搜索（非 JS 版本，轻量快速）
-- 支持中英文搜索
+- 通过 DuckDuckGo HTML 搜索（免费，无需 API Key）
+- 基于 `@modelcontextprotocol/sdk` 标准 MCP 协议
+- `cheerio` 解析 HTML，稳定可靠
+- 内置速率限制 & 超时保护
+- 自动解码 DDG 跳转链接，返回真实 URL
 
 ## 要求
 
-- Node.js >= 18（内置 `fetch` API）
+- Node.js >= 18
+- `npm install`（安装 `@modelcontextprotocol/sdk`、`cheerio`、`zod`）
 
 ## 功能
 
@@ -69,6 +73,9 @@ Claude Code → MCP Protocol (stdio) → mcp-server.js → DuckDuckGo HTML → �
 |------|:---:|:---:|
 | 网页搜索 | ✅ | ✅ |
 | 中文搜索 | ✅ | ✅ |
+| 真实 URL | ✅ | ✅ |
+| 超时保护 | ❌ | ✅ |
+| 速率限制 | ❌ | ✅ |
 | 需要 API Key | ❌ | ❌ |
 | DeepSeek 兼容 | ❌ | ✅ |
 
@@ -114,16 +121,19 @@ In Claude Code:
 ## How It Works
 
 ```
-Claude Code → MCP Protocol (stdio) → mcp-server.js → DuckDuckGo HTML → Results
+Claude Code → MCP SDK (stdio) → mcp-server.js → DuckDuckGo HTML → Results
 ```
 
-- Zero external dependencies (Node.js built-ins only)
-- DuckDuckGo HTML search (non-JS version, lightweight)
-- Supports both Chinese and English queries
+- DuckDuckGo HTML search (free, no API key)
+- Built on `@modelcontextprotocol/sdk` standard MCP protocol
+- `cheerio` HTML parsing for reliability
+- Built-in rate limiting & timeout protection
+- Auto-decodes DDG redirect links, returning real URLs
 
 ## Requirements
 
 - Node.js >= 18
+- `npm install` (installs `@modelcontextprotocol/sdk`, `cheerio`, `zod`)
 
 ## License
 
