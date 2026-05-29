@@ -1,9 +1,16 @@
 {
   "name": "deepseek-web-search",
-  "version": "1.1.0",
-  "description": "Web search MCP server for DeepSeek API users — provides web_search tool via DuckDuckGo",
+  "version": "1.2.0",
+  "description": "Web search MCP server for DeepSeek API users — web_search + fetch_page via DuckDuckGo, zero API key needed",
   "type": "module",
   "main": "scripts/mcp-server.js",
+  "bin": {
+    "deepseek-web-search": "scripts/mcp-server.js"
+  },
+  "files": [
+    "scripts/",
+    ".mcp.json"
+  ],
   "engines": {
     "node": ">=18"
   },
@@ -20,6 +27,8 @@
     "duckduckgo",
     "mcp",
     "mcp-server",
-    "claude-code"
+    "claude-code",
+    "fetch-page",
+    "content-extraction"
   ]
 }
